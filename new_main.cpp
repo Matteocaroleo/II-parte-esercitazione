@@ -23,6 +23,10 @@ int main(){
 	IsoTriangle obj4 (obj2);
 	obj4.Dump();
 
+	cout << "**DESTRUCTOR: should print 2 constructor and 2 destructor: " << endl;
+        IsoTriangle objTemp;
+	objTemp.~IsoTriangle();	
+
 	cout << "*******************COMPARISON OPERATOR: should print 'succesful' if it works: " << endl;
 	(obj4 == obj2)? cout << "SUCCESFULL!"<< endl : cout << "FAIL!" << endl;
 
@@ -74,18 +78,31 @@ int main(){
 	obj1.SetParam (-4,-6);
 	obj1.Dump();
 
-	cout << "****************************************GETTERS: params of previous object:" << endl;
+	cout << "*******************************************GETTERS: params of previous object:" << endl;
 	cout << "\nside: " << obj1.GetSide();
 	cout << "\tbase: " << obj1.GetBase();
 	cout << "\theight: " << obj1.GetHeight() << endl;
 
-	cout << "***********************************************************UTILITIES: Draw: " <<endl;
+	cout << "**************************************************************UTILITIES: Draw: " <<endl;
        	obj1.Draw();
 
-	cout << "*********************************************************TEST FOR POLYGON: " << endl;
-	cout << obj1.GetArea() << endl;
+	cout << "************************************************************TEST FOR POLYGON: " << endl;
+	cout << "Area of obj 1: "<<obj1.GetArea() << endl;
+	cout << "Perimeter of obj 1: "<<obj1.GetPerimeter() << endl;
 
-	cout << "***************END OF TESTING**************************************" << endl;
+	cout << "************************POLYMORPHISM TEST: should print base and height = 5, 6" << endl;
+       	Polygon* P;
+	P = new IsoTriangle(5,6);
+	cout << P->GetArea() << endl; 	
+	cout <<"Should print dump of polygon: " <<endl; 
+       	P->Dump();
+	cout << "Should print perimeter of Isoriangle, cioè 18\n" << P->GetPerimeter() << endl;
+	cout <<"DELETING POLYGON: should print destructor of polygon and isoTriangle: " << endl;
+	delete P;	
+
+
+
+	cout << "***************************END OF TESTING*************************************" << endl;
 	return 0;
 }
 
